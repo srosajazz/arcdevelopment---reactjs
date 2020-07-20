@@ -17,5 +17,11 @@ export default createMuiTheme({
       main: `${headOrange}`   
     
     }
+  },
+
+  typography: {
+    h3: {
+      fontWeight: 300
+    }
   }
 });

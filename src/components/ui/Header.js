@@ -1,6 +1,7 @@
 import React from 'react'
 import AppBar from '@material-ui/core/AppBar';
 import ToolBar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 
 
@@ -25,7 +26,9 @@ export default function Header(props){
     <ElevationScroll>
     <AppBar position="fixed">
       <ToolBar>
-        Sergio Devlopment
+        <Typography variant="h3">
+          Sergio Devlopment
+        </Typography>
       </ToolBar>
     </AppBar>
     </ElevationScroll>
