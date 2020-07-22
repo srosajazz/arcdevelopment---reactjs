@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import ToolBar from '@material-ui/core/Toolbar';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
@@ -7,16 +7,15 @@ import logo from '../../assets/logo.svg';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Button from '@material-ui/core/Button';
-
+import { Link } from 'react-router-dom';
 
 //ElevationScroll
 function ElevationScroll(props) {
   const { children } = props;
-  
+
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
-    
   });
 
   return React.cloneElement(children, {
@@ -24,36 +23,35 @@ function ElevationScroll(props) {
   });
 }
 
-
 //STYLES
 const useStyles = makeStyles(theme => ({
   toolbarMargin: {
     ...theme.mixins.toolbar,
-    marginBottom: '3em'
+    marginBottom: '3em',
   },
-  logo:{
+  logo: {
     height: '7em',
   },
 
   tabContainer: {
-    marginLeft: "auto",
+    marginLeft: 'auto',
   },
-  tab:{
+  tab: {
     ...theme.mixins.tab,
     minWidth: 10, //space between tab
-    marginLeft:"25px",
+    marginLeft: '25px',
   },
-  button:{
+  button: {
     ...theme.typography.estimate,
-    borderRadius:"50px",
-    marginLeft: "50px",
-    marginRight: "25px",
-    height: "45px",
-  }
+    borderRadius: '50px',
+    marginLeft: '50px',
+    marginRight: '25px',
+    height: '45px',
+  },
 }));
 
 //Header
-export default function Header(props){
+export default function Header(props) {
   const classes = useStyles();
   //use Hook
   const [value, setValue] = useState(0);
@@ -61,32 +59,62 @@ export default function Header(props){
   //Handle Change
   const handleChange = (e, value) => {
     setValue(value);
-  }
+  };
 
-  return(
+  return (
     <>
-    <ElevationScroll>
-    <AppBar position="fixed">
-      <ToolBar disableGutters>
-       <img src={logo} className={classes.logo} alt="company logo"
-       />
-       <Tabs value={value}  onChange={handleChange}   className={classes.tabContainer}  indicatorColor="primary">
-         <Tab className={classes.tab}label="Home"  />
-         <Tab className={classes.tab}label="Services"  />
-         <Tab className={classes.tab}label="Appoitment"  />
-         <Tab className={classes.tab}label="About Us"  />
-         <Tab className={classes.tab}label="Contact Us"  />
-       </Tabs>
-       <Button variant="contained" color="secondary" className={classes.button}>
-         Free Estimate
-       </Button>
-      </ToolBar>
-    </AppBar>
-    </ElevationScroll>
-    <div className={classes.toolbarMargin} />
+      <ElevationScroll>
+        <AppBar position="fixed">
+          <ToolBar disableGutters>
+            <img src={logo} className={classes.logo} alt="company logo" />
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              className={classes.tabContainer}
+              indicatorColor="primary"
+            >
+              <Tab
+                className={classes.tab}
+                component={Link}
+                to="/"
+                label="Home"
+              />
+              <Tab
+                className={classes.tab}
+                component={Link}
+                to="/services"
+                label="Services"
+              />
+              <Tab
+                className={classes.tab}
+                component={Link}
+                to="/appointment"
+                label="Appoitment"
+              />
+              <Tab
+                className={classes.tab}
+                component={Link}
+                to="/about"
+                label="About Us"
+              />
+              <Tab
+                className={classes.tab}
+                component={Link}
+                to="/contact"
+                abel="Contact Us"
+              />
+            </Tabs>
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+            >
+              Free Estimate
+            </Button>
+          </ToolBar>
+        </AppBar>
+      </ElevationScroll>
+      <div className={classes.toolbarMargin} />
     </>
   );
-
 }
-
-
