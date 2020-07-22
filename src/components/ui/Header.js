@@ -8,6 +8,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 //ElevationScroll
 function ElevationScroll(props) {
@@ -62,9 +64,26 @@ export default function Header(props) {
   //use Hook
   const [value, setValue] = useState(0);
 
+  //Menu
+  const [anchorEl, setAnchorEl] = useState(null);
+  //Visibility if is on the screen or not
+  const [open, setOpen] = useState(false);
+
   //Handle Change
   const handleChange = (e, value) => {
     setValue(value);
+  };
+
+  //Menu open
+  const handleClick = e => {
+    setAnchorEl(e.currentTarget);
+    setOpen(true);
+  };
+
+  //Menu closed
+  const handleClose = e => {
+    setAnchorEl(null);
+    setOpen(false);
   };
 
   //useEffect & check the current url
@@ -112,8 +131,11 @@ export default function Header(props) {
                 label="Home"
               />
               <Tab
+                aria-owns={anchorEl ? 'simple-menu' : undefined}
+                aria-haspopup={anchorEl ? 'true' : undefined}
                 className={classes.tab}
                 component={Link}
+                onMouseOver={event => handleClick(event)}
                 to="/services"
                 label="Services"
               />
@@ -143,6 +165,22 @@ export default function Header(props) {
             >
               Free Estimate
             </Button>
+            <Menu
+              id="simple-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              MenuListProps={{ onMouseLeave: handleClose }} // close the menu
+            >
+              {/* 1 */}
+              <MenuItem onClick={handleClose}>
+                Custom Software Development
+              </MenuItem>
+              {/* 2 */}
+              <MenuItem onClick={handleClose}>Mobile Development</MenuItem>
+              {/* 3 */}
+              <MenuItem onClick={handleClose}>Website Development</MenuItem>
+            </Menu>
           </ToolBar>
         </AppBar>
       </ElevationScroll>
