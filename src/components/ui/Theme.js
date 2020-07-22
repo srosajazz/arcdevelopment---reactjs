@@ -7,15 +7,15 @@ const headOrange = "#FFBA60"
 export default createMuiTheme({
   palette: {
     common: {
-      blue: `${headBlue}`,     
-      orange: `${headOrange}`     
+      blue: `${headBlue}`,
+      orange: `${headOrange}`
     },
     primary: {
-      main: `${headBlue}`   
+      main: `${headBlue}`
     },
     secondary: {
-      main: `${headOrange}`   
-    
+      main: `${headOrange}`
+
     }
   },
 
